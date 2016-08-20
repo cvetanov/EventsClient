@@ -6,10 +6,9 @@ export default function Event(props) {
   const {
     event
   } = props;
-  console.log(event);
 
-  const className = `${classes.event} event-${event.url}`;
-  const component = (
+  const className = `${classes.event}`;
+  return (
     <div className={className}>
       <div>
         <img className={classes.eventimg} src={event.imgUrl} alt={event.title} />
@@ -21,11 +20,9 @@ export default function Event(props) {
       </div>
       <a href={event.url} target="_blank">See more</a>
     </div>
-  )
-
-  return component;
+  );
 }
 
 Event.propTypes = {
   event: React.PropTypes.object.isRequired
-}
+};

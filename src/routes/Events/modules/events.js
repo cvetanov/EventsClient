@@ -1,40 +1,52 @@
+import 'whatwg-fetch';
+
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const EVENTS_GET_ALL = 'EVENTS.GET_ALL';
+export const EVENTS_GET_SUCCESS = 'EVENTS.GET_SUCCESS';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
 
-export function getEvents() {
+
+export const getEventsAsync = (dispatch) => {
+  fetch('http://localhost:9013/api/events/mock')
+    .then(function(response) {
+      return response.json()
+    }).then(function(json) {
+    dispatch(getEventsSuccess(json));
+  })
+};
+
+export function getEventsSuccess(data) {
   return {
-    type: EVENTS_GET_ALL
+    type: EVENTS_GET_SUCCESS,
+    data
   };
 }
 
 export const actions = {
-  getEvents
-}
+  getEventsSuccess
+};
+
+const getEventsSuccessReducer = (state, action) => {
+  return Object.assign([], state, action.data);
+};
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [EVENTS_GET_ALL]: eventsGetAll
-}
-
-const eventsGetAll = (state, action) => {
-  //send request for all events
-  return state;
-}
+  [EVENTS_GET_SUCCESS]: getEventsSuccessReducer
+};
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 import initialState from '../assets/initialState';
-export default function counterReducer (state = initialState, action) {
-  const handler = ACTION_HANDLERS[action.type]
+export default function eventsReducer (state = [], action) {
+  const handler = ACTION_HANDLERS[action.type];
 
-  return handler ? handler(state, action) : state
+  return handler ? handler(state, action) : state;
 }
