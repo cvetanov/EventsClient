@@ -9,16 +9,18 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Events = require('./containers/EventsContainer').default
-      const reducer = require('./modules/events').default
+      const Events = require('./containers/EventsContainer').default;
+      const reducer = require('./modules/events').default;
 
       /*  Add the reducer to the store on key 'events'  */
-      injectReducer(store, { key: 'events', reducer })
+      injectReducer(store, { key: 'events', reducer });
 
       /*  Return getComponent   */
-      cb(null, Events)
+      cb(null, Events);
 
     /* Webpack named bundle   */
   }, 'events')
   }
 })
+
+export const EVENTS_API_URL = 'http://localhost:9013/api/events';

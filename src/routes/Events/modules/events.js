@@ -1,4 +1,7 @@
 import 'whatwg-fetch';
+import {
+  EVENTS_API_URL
+} from '../index';
 
 // ------------------------------------
 // Constants
@@ -11,7 +14,7 @@ export const EVENTS_GET_SUCCESS = 'EVENTS.GET_SUCCESS';
 
 
 export const getEventsAsync = (dispatch) => {
-  fetch('http://localhost:9013/api/events/mock')
+  fetch(EVENTS_API_URL)
     .then(function(response) {
       return response.json()
     }).then(function(json) {

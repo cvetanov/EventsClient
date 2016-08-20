@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { getEventsAsync } from '../modules/events';
-import Event from './Event';
+import Event from '../../../components/Event';
 
 class EventsList extends React.Component {
   componentDidMount() {
