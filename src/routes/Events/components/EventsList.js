@@ -7,7 +7,6 @@ import Event from '../../../components/Event';
 
 class EventsList extends React.Component {
   componentDidMount() {
-    console.log('component did mount');
     this.props.getEvents();
   }
 

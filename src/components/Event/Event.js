@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router';
 import classes from './Event.scss';
 
 export default function Event(props) {
@@ -8,6 +8,7 @@ export default function Event(props) {
   } = props;
 
   const className = `${classes.event}`;
+  const link = `/events/${event.title}`;
   return (
     <div className={className}>
       <div>
@@ -17,6 +18,11 @@ export default function Event(props) {
         <span className="event-info">
           {event.title} @ {event.place} on {event.formattedDate}
         </span>
+      </div>
+      <div>
+        <Link to={link} query={{ uri: event.uri }}>
+          Details
+        </Link>
       </div>
       <a href={event.url} target="_blank">See more</a>
     </div>
