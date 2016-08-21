@@ -4,11 +4,12 @@ import classes from './Event.scss';
 
 export default function Event(props) {
   const {
+    index,
     event
   } = props;
 
   const className = `${classes.event}`;
-  const link = `/events/${event.title}`;
+  const link = `/events/${index}`;
   return (
     <div className={className}>
       <div>
@@ -20,7 +21,7 @@ export default function Event(props) {
         </span>
       </div>
       <div>
-        <Link to={link} query={{ uri: event.uri }}>
+        <Link to={link}>
           Details
         </Link>
       </div>
@@ -30,5 +31,9 @@ export default function Event(props) {
 }
 
 Event.propTypes = {
-  event: React.PropTypes.object.isRequired
+  event: React.PropTypes.object.isRequired,
+  index: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ])
 };

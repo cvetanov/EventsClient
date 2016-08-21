@@ -3,19 +3,21 @@ import { connect } from 'react-redux';
 
 import Event from '../../../../../components/Event';
 import {
-  getEventAsync
+  getEventAsync,
+  getEventUri
 } from '../modules/event';
 
 class EventContainer extends React.Component {
   componentDidMount() {
-    this.props.getEvent(this.props.location.query.uri);
+    const uri = this.props.getEventUri(this.props.params.id);
+    this.props.getEvent(uri);
   }
 
   render() {
     let toDisplay = null;
     if (this.props.event) {
       toDisplay = (
-        <Event event={this.props.event} />
+        <Event event={this.props.event} index={this.props.params.id} />
       );
     }
     return (
@@ -28,7 +30,8 @@ class EventContainer extends React.Component {
 
 function mapStateToProps(state) {
   return ({
-    event: state.detailedEvent
+    event: state.detailedEvent,
+    getEventUri: (id) => getEventUri(id, state.events)
   })
 }
 

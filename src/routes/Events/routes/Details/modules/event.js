@@ -5,6 +5,8 @@ import 'whatwg-fetch';
 // ------------------------------------
 export const EVENT_GET_SUCCESS = 'EVENT.GET_SUCCESS';
 
+export const getEventUri = (index, events) => events[index].uri;
+
 // ------------------------------------
 // Actions
 // ------------------------------------

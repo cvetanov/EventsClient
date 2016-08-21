@@ -19,7 +19,7 @@ class EventsList extends React.Component {
       <div className="events-list">
         {
           events.map((event, index) =>
-            <Event event={event} key={index} />
+            <Event event={event} key={index} index={index} />
           )
         }
       </div>
